@@ -1,0 +1,219 @@
+[
+    {
+        "pr_id": "PR-1001",
+        "title": "Feature implementation 1",
+        "total_time_hours": 16,
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Found a security vulnerability",
+                    "Logic error in loop"
+                ],
+                "lines_of_code_changed": 35,
+                "time_spent_minutes": 52,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Please rename variable x",
+                    "Missing semicolon",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 43,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Please rename variable x",
+                    "Missing semicolon",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 5,
+                "time_spent_minutes": 25,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 4,
+                "reviewer_comments": [
+                    "Please rename variable x",
+                    "Missing semicolon",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 60,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1002",
+        "title": "Feature implementation 2",
+        "total_time_hours": 13,
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Found a security vulnerability",
+                    "Logic error in loop"
+                ],
+                "lines_of_code_changed": 45,
+                "time_spent_minutes": 23,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Please rename variable x",
+                    "Missing semicolon",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 22,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1003",
+        "title": "Feature implementation 3",
+        "total_time_hours": 18,
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Found a security vulnerability",
+                    "Logic error in loop"
+                ],
+                "lines_of_code_changed": 32,
+                "time_spent_minutes": 31,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Please rename variable x",
+                    "Missing semicolon",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 34,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Please rename variable x",
+                    "Missing semicolon",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 5,
+                "time_spent_minutes": 45,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 4,
+                "reviewer_comments": [
+                    "Please rename variable x",
+                    "Missing semicolon",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 57,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1004",
+        "title": "Feature implementation 4",
+        "total_time_hours": 14,
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Found a security vulnerability",
+                    "Logic error in loop"
+                ],
+                "lines_of_code_changed": 13,
+                "time_spent_minutes": 13,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Please rename variable x",
+                    "Missing semicolon",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 5,
+                "time_spent_minutes": 19,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Please rename variable x",
+                    "Missing semicolon",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 5,
+                "time_spent_minutes": 35,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1005",
+        "title": "Feature implementation 5",
+        "total_time_hours": 10,
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Found a security vulnerability",
+                    "Logic error in loop"
+                ],
+                "lines_of_code_changed": 42,
+                "time_spent_minutes": 21,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Please rename variable x",
+                    "Missing semicolon",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 31,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Please rename variable x",
+                    "Missing semicolon",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 4,
+                "time_spent_minutes": 57,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 4,
+                "reviewer_comments": [
+                    "Please rename variable x",
+                    "Missing semicolon",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 59,
+                "value_assessment": "low"
+            }
+        ]
+    }
+]

@@ -1,0 +1,102 @@
+{
+    "summary": {
+        "total_prs_analyzed": 5,
+        "total_high_value_rounds": 10,
+        "total_low_value_rounds": 7,
+        "total_time_wasted_minutes": 338,
+        "time_saved_hours": 5.63
+    },
+    "deleted_rounds": [
+        {
+            "round_number": 3,
+            "reviewer_comments": [
+                "Please rename variable x",
+                "Missing semicolon",
+                "LGTM"
+            ],
+            "lines_of_code_changed": 5,
+            "time_spent_minutes": 25,
+            "value_assessment": "low",
+            "status": "LOW_VALUE (Wasted Attention)",
+            "pr_id": "PR-1001"
+        },
+        {
+            "round_number": 4,
+            "reviewer_comments": [
+                "Please rename variable x",
+                "Missing semicolon",
+                "LGTM"
+            ],
+            "lines_of_code_changed": 1,
+            "time_spent_minutes": 60,
+            "value_assessment": "low",
+            "status": "LOW_VALUE (Wasted Attention)",
+            "pr_id": "PR-1001"
+        },
+        {
+            "round_number": 3,
+            "reviewer_comments": [
+                "Please rename variable x",
+                "Missing semicolon",
+                "LGTM"
+            ],
+            "lines_of_code_changed": 5,
+            "time_spent_minutes": 45,
+            "value_assessment": "low",
+            "status": "LOW_VALUE (Wasted Attention)",
+            "pr_id": "PR-1003"
+        },
+        {
+            "round_number": 4,
+            "reviewer_comments": [
+                "Please rename variable x",
+                "Missing semicolon",
+                "LGTM"
+            ],
+            "lines_of_code_changed": 2,
+            "time_spent_minutes": 57,
+            "value_assessment": "low",
+            "status": "LOW_VALUE (Wasted Attention)",
+            "pr_id": "PR-1003"
+        },
+        {
+            "round_number": 3,
+            "reviewer_comments": [
+                "Please rename variable x",
+                "Missing semicolon",
+                "LGTM"
+            ],
+            "lines_of_code_changed": 5,
+            "time_spent_minutes": 35,
+            "value_assessment": "low",
+            "status": "LOW_VALUE (Wasted Attention)",
+            "pr_id": "PR-1004"
+        },
+        {
+            "round_number": 3,
+            "reviewer_comments": [
+                "Please rename variable x",
+                "Missing semicolon",
+                "LGTM"
+            ],
+            "lines_of_code_changed": 4,
+            "time_spent_minutes": 57,
+            "value_assessment": "low",
+            "status": "LOW_VALUE (Wasted Attention)",
+            "pr_id": "PR-1005"
+        },
+        {
+            "round_number": 4,
+            "reviewer_comments": [
+                "Please rename variable x",
+                "Missing semicolon",
+                "LGTM"
+            ],
+            "lines_of_code_changed": 3,
+            "time_spent_minutes": 59,
+            "value_assessment": "low",
+            "status": "LOW_VALUE (Wasted Attention)",
+            "pr_id": "PR-1005"
+        }
+    ]
+}

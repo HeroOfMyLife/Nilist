@@ -1,217 +1,1583 @@
 [
     {
         "pr_id": "PR-1001",
-        "title": "Feature implementation 1",
-        "total_time_hours": 16,
+        "title": "Upgrade Node.js runtime to v20 LTS",
         "rounds": [
             {
                 "round_number": 1,
                 "reviewer_comments": [
-                    "Found a security vulnerability",
-                    "Logic error in loop"
+                    "Race condition possible when two threads update the same record",
+                    "Missing rollback on transaction failure"
                 ],
-                "lines_of_code_changed": 35,
-                "time_spent_minutes": 52,
+                "lines_of_code_changed": 87,
+                "time_spent_minutes": 15,
                 "value_assessment": "high"
             },
             {
                 "round_number": 2,
                 "reviewer_comments": [
-                    "Please rename variable x",
-                    "Missing semicolon",
-                    "LGTM"
+                    "Missing semicolon on line 42",
+                    "LGTM overall"
                 ],
-                "lines_of_code_changed": 3,
-                "time_spent_minutes": 43,
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 14,
                 "value_assessment": "low"
             },
             {
                 "round_number": 3,
                 "reviewer_comments": [
-                    "Please rename variable x",
-                    "Missing semicolon",
-                    "LGTM"
+                    "LGTM, CI is green"
                 ],
-                "lines_of_code_changed": 5,
-                "time_spent_minutes": 25,
-                "value_assessment": "low"
-            },
-            {
-                "round_number": 4,
-                "reviewer_comments": [
-                    "Please rename variable x",
-                    "Missing semicolon",
-                    "LGTM"
-                ],
-                "lines_of_code_changed": 1,
-                "time_spent_minutes": 60,
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 7,
                 "value_assessment": "low"
             }
         ]
     },
     {
         "pr_id": "PR-1002",
-        "title": "Feature implementation 2",
-        "total_time_hours": 13,
+        "title": "Implement lazy loading for dashboard widgets",
         "rounds": [
             {
                 "round_number": 1,
                 "reviewer_comments": [
-                    "Found a security vulnerability",
-                    "Logic error in loop"
+                    "Race condition possible when two threads update the same record",
+                    "Missing rollback on transaction failure"
                 ],
-                "lines_of_code_changed": 45,
-                "time_spent_minutes": 23,
+                "lines_of_code_changed": 92,
+                "time_spent_minutes": 37,
                 "value_assessment": "high"
             },
             {
                 "round_number": 2,
                 "reviewer_comments": [
-                    "Please rename variable x",
-                    "Missing semicolon",
+                    "Missing trailing newline at end of file",
                     "LGTM"
                 ],
-                "lines_of_code_changed": 1,
-                "time_spent_minutes": 22,
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 19,
                 "value_assessment": "low"
             }
         ]
     },
     {
         "pr_id": "PR-1003",
-        "title": "Feature implementation 3",
-        "total_time_hours": 18,
+        "title": "Add Sentry error tracking to API gateway",
         "rounds": [
             {
                 "round_number": 1,
                 "reviewer_comments": [
-                    "Found a security vulnerability",
-                    "Logic error in loop"
+                    "Null pointer exception if `user` is None \u2014 needs a guard clause",
+                    "Logic error: loop exits one iteration too early"
                 ],
-                "lines_of_code_changed": 32,
-                "time_spent_minutes": 31,
+                "lines_of_code_changed": 58,
+                "time_spent_minutes": 24,
                 "value_assessment": "high"
             },
             {
                 "round_number": 2,
                 "reviewer_comments": [
-                    "Please rename variable x",
-                    "Missing semicolon",
-                    "LGTM"
+                    "LGTM \u2014 minor: this comment is outdated, please update it"
                 ],
-                "lines_of_code_changed": 2,
-                "time_spent_minutes": 34,
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 13,
                 "value_assessment": "low"
             },
             {
                 "round_number": 3,
                 "reviewer_comments": [
-                    "Please rename variable x",
-                    "Missing semicolon",
-                    "LGTM"
+                    "Looks good to me \ud83d\udc4d"
                 ],
-                "lines_of_code_changed": 5,
-                "time_spent_minutes": 45,
-                "value_assessment": "low"
-            },
-            {
-                "round_number": 4,
-                "reviewer_comments": [
-                    "Please rename variable x",
-                    "Missing semicolon",
-                    "LGTM"
-                ],
-                "lines_of_code_changed": 2,
-                "time_spent_minutes": 57,
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 6,
                 "value_assessment": "low"
             }
         ]
     },
     {
         "pr_id": "PR-1004",
-        "title": "Feature implementation 4",
-        "total_time_hours": 14,
+        "title": "Replace lodash with native ES2023 equivalents",
         "rounds": [
             {
                 "round_number": 1,
                 "reviewer_comments": [
-                    "Found a security vulnerability",
-                    "Logic error in loop"
+                    "XSS vulnerability: HTML is rendered from unescaped user input",
+                    "Sensitive data logged in plaintext"
                 ],
-                "lines_of_code_changed": 13,
-                "time_spent_minutes": 13,
+                "lines_of_code_changed": 95,
+                "time_spent_minutes": 15,
                 "value_assessment": "high"
             },
             {
                 "round_number": 2,
                 "reviewer_comments": [
-                    "Please rename variable x",
-                    "Missing semicolon",
-                    "LGTM"
+                    "Variable `x` should be `itemCount` per naming convention",
+                    "Unnecessary `else` after `return`"
                 ],
-                "lines_of_code_changed": 5,
-                "time_spent_minutes": 19,
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 7,
                 "value_assessment": "low"
             },
             {
                 "round_number": 3,
                 "reviewer_comments": [
-                    "Please rename variable x",
-                    "Missing semicolon",
-                    "LGTM"
+                    "All previous comments addressed, good to go"
                 ],
-                "lines_of_code_changed": 5,
-                "time_spent_minutes": 35,
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 12,
                 "value_assessment": "low"
             }
         ]
     },
     {
         "pr_id": "PR-1005",
-        "title": "Feature implementation 5",
-        "total_time_hours": 10,
+        "title": "Fix CSRF token mismatch on form submission",
         "rounds": [
             {
                 "round_number": 1,
                 "reviewer_comments": [
-                    "Found a security vulnerability",
-                    "Logic error in loop"
+                    "Auth bypass possible via JWT algorithm confusion",
+                    "File path traversal vulnerability in upload handler"
                 ],
-                "lines_of_code_changed": 42,
+                "lines_of_code_changed": 81,
                 "time_spent_minutes": 21,
                 "value_assessment": "high"
             },
             {
                 "round_number": 2,
                 "reviewer_comments": [
-                    "Please rename variable x",
-                    "Missing semicolon",
-                    "LGTM"
+                    "Prefer `const` over `let` here \u2014 value is never reassigned",
+                    "Typo in error message: 'occured' \u2192 'occurred'"
                 ],
                 "lines_of_code_changed": 2,
-                "time_spent_minutes": 31,
+                "time_spent_minutes": 19,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1006",
+        "title": "Add retry logic to external API client",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Auth bypass possible via JWT algorithm confusion",
+                    "File path traversal vulnerability in upload handler"
+                ],
+                "lines_of_code_changed": 44,
+                "time_spent_minutes": 15,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Rename function `doIt` to `processPayment`",
+                    "Inline this single-use variable"
+                ],
+                "lines_of_code_changed": 4,
+                "time_spent_minutes": 6,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1007",
+        "title": "Fix memory leak in WebSocket handler",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Auth bypass possible via JWT algorithm confusion",
+                    "File path traversal vulnerability in upload handler"
+                ],
+                "lines_of_code_changed": 33,
+                "time_spent_minutes": 39,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Variable `x` should be `itemCount` per naming convention",
+                    "Unnecessary `else` after `return`"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 20,
                 "value_assessment": "low"
             },
             {
                 "round_number": 3,
                 "reviewer_comments": [
-                    "Please rename variable x",
-                    "Missing semicolon",
-                    "LGTM"
+                    "LGTM \u2014 nice clean fix"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 13,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1008",
+        "title": "Fix auth token expiration bug",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "XSS vulnerability: HTML is rendered from unescaped user input",
+                    "Sensitive data logged in plaintext"
+                ],
+                "lines_of_code_changed": 98,
+                "time_spent_minutes": 22,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Whitespace nit: remove extra blank line",
+                    "Rename `cb` to `callback`"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 6,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "LGTM \u2014 nice clean fix"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 12,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1009",
+        "title": "Add input validation to registration form",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Unhandled promise rejection will silently swallow errors",
+                    "Breaking change: this renames a public API field"
+                ],
+                "lines_of_code_changed": 65,
+                "time_spent_minutes": 44,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Rename function `doIt` to `processPayment`",
+                    "Inline this single-use variable"
+                ],
+                "lines_of_code_changed": 5,
+                "time_spent_minutes": 11,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1010",
+        "title": "Fix broken image URLs after CDN migration",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "XSS vulnerability: HTML is rendered from unescaped user input",
+                    "Sensitive data logged in plaintext"
+                ],
+                "lines_of_code_changed": 52,
+                "time_spent_minutes": 29,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Whitespace nit: remove extra blank line",
+                    "Rename `cb` to `callback`"
                 ],
                 "lines_of_code_changed": 4,
-                "time_spent_minutes": 57,
+                "time_spent_minutes": 14,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Looks good, no further comments"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 6,
                 "value_assessment": "low"
             },
             {
                 "round_number": 4,
                 "reviewer_comments": [
-                    "Please rename variable x",
-                    "Missing semicolon",
-                    "LGTM"
+                    "Still approved"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 5,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1011",
+        "title": "Implement two-factor authentication",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Null pointer exception if `user` is None \u2014 needs a guard clause",
+                    "Logic error: loop exits one iteration too early"
+                ],
+                "lines_of_code_changed": 76,
+                "time_spent_minutes": 30,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Missing semicolon on line 42",
+                    "LGTM overall"
+                ],
+                "lines_of_code_changed": 5,
+                "time_spent_minutes": 9,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1012",
+        "title": "Refactor order status state machine",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Null pointer exception if `user` is None \u2014 needs a guard clause",
+                    "Logic error: loop exits one iteration too early"
+                ],
+                "lines_of_code_changed": 24,
+                "time_spent_minutes": 41,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "LGTM \u2014 just a nit: extract this into a named constant"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 9,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "All previous comments addressed, good to go"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 9,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 4,
+                "reviewer_comments": [
+                    "Still approved"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 8,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1013",
+        "title": "Add export to CSV feature in admin dashboard",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Auth bypass possible via JWT algorithm confusion",
+                    "File path traversal vulnerability in upload handler"
+                ],
+                "lines_of_code_changed": 33,
+                "time_spent_minutes": 45,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Prefer `const` over `let` here \u2014 value is never reassigned",
+                    "Typo in error message: 'occured' \u2192 'occurred'"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 19,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "All previous comments addressed, good to go"
                 ],
                 "lines_of_code_changed": 3,
-                "time_spent_minutes": 59,
+                "time_spent_minutes": 11,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 4,
+                "reviewer_comments": [
+                    "Merged"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 8,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1014",
+        "title": "Add audit logging for admin actions",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Security flaw: user input is not sanitised before DB query",
+                    "Missing authentication check on this endpoint"
+                ],
+                "lines_of_code_changed": 45,
+                "time_spent_minutes": 30,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Prefer `const` over `let` here \u2014 value is never reassigned",
+                    "Typo in error message: 'occured' \u2192 'occurred'"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 14,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1015",
+        "title": "Fix stale cache bug in user profile page",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Auth bypass possible via JWT algorithm confusion",
+                    "File path traversal vulnerability in upload handler"
+                ],
+                "lines_of_code_changed": 74,
+                "time_spent_minutes": 23,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Missing trailing newline at end of file",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 5,
+                "time_spent_minutes": 13,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1016",
+        "title": "Add unit tests for UserService",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Unhandled promise rejection will silently swallow errors",
+                    "Breaking change: this renames a public API field"
+                ],
+                "lines_of_code_changed": 76,
+                "time_spent_minutes": 28,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Whitespace nit: remove extra blank line",
+                    "Rename `cb` to `callback`"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 14,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1017",
+        "title": "Refactor config loading to use environment variables",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Security flaw: user input is not sanitised before DB query",
+                    "Missing authentication check on this endpoint"
+                ],
+                "lines_of_code_changed": 46,
+                "time_spent_minutes": 25,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Prefer `const` over `let` here \u2014 value is never reassigned",
+                    "Typo in error message: 'occured' \u2192 'occurred'"
+                ],
+                "lines_of_code_changed": 5,
+                "time_spent_minutes": 10,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "LGTM",
+                    "Approved \u2014 ready to merge"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 8,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1018",
+        "title": "Add pagination to /api/orders endpoint",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "SQL injection risk in raw query string",
+                    "No error handling if the external API call times out"
+                ],
+                "lines_of_code_changed": 91,
+                "time_spent_minutes": 34,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Missing trailing newline at end of file",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 8,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Ship it"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 9,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1019",
+        "title": "Refactor email template rendering engine",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Security flaw: user input is not sanitised before DB query",
+                    "Missing authentication check on this endpoint"
+                ],
+                "lines_of_code_changed": 54,
+                "time_spent_minutes": 36,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Nit: align ternary operator for readability",
+                    "LGTM from my side"
+                ],
+                "lines_of_code_changed": 4,
+                "time_spent_minutes": 6,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1020",
+        "title": "Add health check endpoint for load balancer",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Business logic is incorrect: discount applies before tax, not after",
+                    "Missing index will cause full table scan at scale"
+                ],
+                "lines_of_code_changed": 61,
+                "time_spent_minutes": 34,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Variable `x` should be `itemCount` per naming convention",
+                    "Unnecessary `else` after `return`"
+                ],
+                "lines_of_code_changed": 4,
+                "time_spent_minutes": 8,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "LGTM",
+                    "Approved \u2014 ready to merge"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 12,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 4,
+                "reviewer_comments": [
+                    "No changes needed"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 8,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1021",
+        "title": "Implement password strength enforcement",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Auth bypass possible via JWT algorithm confusion",
+                    "File path traversal vulnerability in upload handler"
+                ],
+                "lines_of_code_changed": 50,
+                "time_spent_minutes": 28,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Rename function `doIt` to `processPayment`",
+                    "Inline this single-use variable"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 14,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Looks good, no further comments"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 6,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1022",
+        "title": "Fix race condition in background job queue",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "XSS vulnerability: HTML is rendered from unescaped user input",
+                    "Sensitive data logged in plaintext"
+                ],
+                "lines_of_code_changed": 58,
+                "time_spent_minutes": 39,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Missing trailing newline at end of file",
+                    "LGTM"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 10,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Approved \u2014 well done"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 8,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1023",
+        "title": "Fix broken CI pipeline on Windows runners",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Hardcoded secret key detected \u2014 must be moved to env vars",
+                    "No rate limiting on this public endpoint"
+                ],
+                "lines_of_code_changed": 43,
+                "time_spent_minutes": 28,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Missing semicolon on line 42",
+                    "LGTM overall"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 19,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1024",
+        "title": "Add OpenAPI spec for internal services",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "CSRF token not validated on this form action",
+                    "Session is not invalidated on logout"
+                ],
+                "lines_of_code_changed": 92,
+                "time_spent_minutes": 40,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Whitespace nit: remove extra blank line",
+                    "Rename `cb` to `callback`"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 10,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1025",
+        "title": "Resolve merge conflict in feature/checkout branch",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Race condition possible when two threads update the same record",
+                    "Missing rollback on transaction failure"
+                ],
+                "lines_of_code_changed": 36,
+                "time_spent_minutes": 39,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "LGTM \u2014 minor: this comment is outdated, please update it"
+                ],
+                "lines_of_code_changed": 4,
+                "time_spent_minutes": 12,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1026",
+        "title": "Fix flaky integration test in checkout flow",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Hardcoded secret key detected \u2014 must be moved to env vars",
+                    "No rate limiting on this public endpoint"
+                ],
+                "lines_of_code_changed": 87,
+                "time_spent_minutes": 34,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Prefer `const` over `let` here \u2014 value is never reassigned",
+                    "Typo in error message: 'occured' \u2192 'occurred'"
+                ],
+                "lines_of_code_changed": 4,
+                "time_spent_minutes": 15,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Approved"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 5,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 4,
+                "reviewer_comments": [
+                    "Still approved"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 8,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1027",
+        "title": "Add GDPR data deletion endpoint",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Null pointer exception if `user` is None \u2014 needs a guard clause",
+                    "Logic error: loop exits one iteration too early"
+                ],
+                "lines_of_code_changed": 81,
+                "time_spent_minutes": 45,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Prefer `const` over `let` here \u2014 value is never reassigned",
+                    "Typo in error message: 'occured' \u2192 'occurred'"
+                ],
+                "lines_of_code_changed": 4,
+                "time_spent_minutes": 18,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1028",
+        "title": "Refactor authentication middleware",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "XSS vulnerability: HTML is rendered from unescaped user input",
+                    "Sensitive data logged in plaintext"
+                ],
+                "lines_of_code_changed": 45,
+                "time_spent_minutes": 29,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Nit: align ternary operator for readability",
+                    "LGTM from my side"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 20,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Looks good, no further comments"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 15,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1029",
+        "title": "Remove deprecated payment gateway integration",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Security flaw: user input is not sanitised before DB query",
+                    "Missing authentication check on this endpoint"
+                ],
+                "lines_of_code_changed": 30,
+                "time_spent_minutes": 45,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Rename `tmp` to `userPayload` for clarity",
+                    "Missing trailing comma in object literal"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 12,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "LGTM",
+                    "Approved \u2014 ready to merge"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 9,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 4,
+                "reviewer_comments": [
+                    "No changes needed"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 5,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1030",
+        "title": "Refactor user dashboard component",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "SQL injection risk in raw query string",
+                    "No error handling if the external API call times out"
+                ],
+                "lines_of_code_changed": 20,
+                "time_spent_minutes": 40,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Rename function `doIt` to `processPayment`",
+                    "Inline this single-use variable"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 9,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Approved after re-review"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 8,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 4,
+                "reviewer_comments": [
+                    "Merged"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 7,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1031",
+        "title": "Optimise SQL queries in reporting module",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "XSS vulnerability: HTML is rendered from unescaped user input",
+                    "Sensitive data logged in plaintext"
+                ],
+                "lines_of_code_changed": 20,
+                "time_spent_minutes": 36,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "LGTM \u2014 minor: this comment is outdated, please update it"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 6,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Ship it"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 6,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1032",
+        "title": "Fix incorrect tax calculation for EU orders",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "XSS vulnerability: HTML is rendered from unescaped user input",
+                    "Sensitive data logged in plaintext"
+                ],
+                "lines_of_code_changed": 98,
+                "time_spent_minutes": 21,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "LGTM \u2014 just a nit: extract this into a named constant"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 17,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1033",
+        "title": "Fix incorrect HTTP status codes in REST API",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "XSS vulnerability: HTML is rendered from unescaped user input",
+                    "Sensitive data logged in plaintext"
+                ],
+                "lines_of_code_changed": 69,
+                "time_spent_minutes": 37,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Rename function `doIt` to `processPayment`",
+                    "Inline this single-use variable"
+                ],
+                "lines_of_code_changed": 5,
+                "time_spent_minutes": 16,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1034",
+        "title": "Implement soft-delete for user accounts",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Hardcoded secret key detected \u2014 must be moved to env vars",
+                    "No rate limiting on this public endpoint"
+                ],
+                "lines_of_code_changed": 28,
+                "time_spent_minutes": 36,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Rename `tmp` to `userPayload` for clarity",
+                    "Missing trailing comma in object literal"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 15,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1035",
+        "title": "Fix null pointer exception in cart checkout",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Race condition possible when two threads update the same record",
+                    "Missing rollback on transaction failure"
+                ],
+                "lines_of_code_changed": 76,
+                "time_spent_minutes": 33,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Variable `x` should be `itemCount` per naming convention",
+                    "Unnecessary `else` after `return`"
+                ],
+                "lines_of_code_changed": 5,
+                "time_spent_minutes": 17,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Looks good, no further comments"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 14,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1036",
+        "title": "Fix timezone bug in scheduled notifications",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "CSRF token not validated on this form action",
+                    "Session is not invalidated on logout"
+                ],
+                "lines_of_code_changed": 76,
+                "time_spent_minutes": 31,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Prefer `const` over `let` here \u2014 value is never reassigned",
+                    "Typo in error message: 'occured' \u2192 'occurred'"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 6,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Looks good, no further comments"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 12,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1037",
+        "title": "Fix broken redirect after password reset",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Null pointer exception if `user` is None \u2014 needs a guard clause",
+                    "Logic error: loop exits one iteration too early"
+                ],
+                "lines_of_code_changed": 91,
+                "time_spent_minutes": 38,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "LGTM \u2014 just a nit: extract this into a named constant"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 17,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1038",
+        "title": "Update Dockerfile to use multi-stage build",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Security flaw: user input is not sanitised before DB query",
+                    "Missing authentication check on this endpoint"
+                ],
+                "lines_of_code_changed": 70,
+                "time_spent_minutes": 37,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Prefer `const` over `let` here \u2014 value is never reassigned",
+                    "Typo in error message: 'occured' \u2192 'occurred'"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 17,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1039",
+        "title": "Add rate limiting to public API endpoints",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Unhandled promise rejection will silently swallow errors",
+                    "Breaking change: this renames a public API field"
+                ],
+                "lines_of_code_changed": 94,
+                "time_spent_minutes": 28,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "LGTM \u2014 minor: this comment is outdated, please update it"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 6,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1040",
+        "title": "Fix XSS vulnerability in comment renderer",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "SQL injection risk in raw query string",
+                    "No error handling if the external API call times out"
+                ],
+                "lines_of_code_changed": 29,
+                "time_spent_minutes": 24,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Rename function `doIt` to `processPayment`",
+                    "Inline this single-use variable"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 6,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Approved \u2014 well done"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 14,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1041",
+        "title": "Implement OAuth2 login flow",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "CSRF token not validated on this form action",
+                    "Session is not invalidated on logout"
+                ],
+                "lines_of_code_changed": 26,
+                "time_spent_minutes": 22,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Variable `x` should be `itemCount` per naming convention",
+                    "Unnecessary `else` after `return`"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 9,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1042",
+        "title": "Fix session expiry not invalidating JWT",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Hardcoded secret key detected \u2014 must be moved to env vars",
+                    "No rate limiting on this public endpoint"
+                ],
+                "lines_of_code_changed": 61,
+                "time_spent_minutes": 18,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Missing semicolon on line 42",
+                    "LGTM overall"
+                ],
+                "lines_of_code_changed": 5,
+                "time_spent_minutes": 7,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Approved"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 5,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1043",
+        "title": "Refactor frontend routing to React Router v6",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Business logic is incorrect: discount applies before tax, not after",
+                    "Missing index will cause full table scan at scale"
+                ],
+                "lines_of_code_changed": 82,
+                "time_spent_minutes": 29,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Whitespace nit: remove extra blank line",
+                    "Rename `cb` to `callback`"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 18,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "LGTM \u2014 nice clean fix"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 10,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1044",
+        "title": "Add dark mode support to settings page",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Auth bypass possible via JWT algorithm confusion",
+                    "File path traversal vulnerability in upload handler"
+                ],
+                "lines_of_code_changed": 42,
+                "time_spent_minutes": 26,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "LGTM \u2014 just a nit: extract this into a named constant"
+                ],
+                "lines_of_code_changed": 5,
+                "time_spent_minutes": 7,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1045",
+        "title": "Fix permissions check in document sharing feature",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Hardcoded secret key detected \u2014 must be moved to env vars",
+                    "No rate limiting on this public endpoint"
+                ],
+                "lines_of_code_changed": 88,
+                "time_spent_minutes": 43,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Rename function `doIt` to `processPayment`",
+                    "Inline this single-use variable"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 14,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Looks good to me \ud83d\udc4d"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 6,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1046",
+        "title": "Migrate database connection to connection pooling",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "CSRF token not validated on this form action",
+                    "Session is not invalidated on logout"
+                ],
+                "lines_of_code_changed": 82,
+                "time_spent_minutes": 42,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Rename function `doIt` to `processPayment`",
+                    "Inline this single-use variable"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 5,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1047",
+        "title": "Add caching layer for product catalogue",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Security flaw: user input is not sanitised before DB query",
+                    "Missing authentication check on this endpoint"
+                ],
+                "lines_of_code_changed": 26,
+                "time_spent_minutes": 31,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Rename `tmp` to `userPayload` for clarity",
+                    "Missing trailing comma in object literal"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 5,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1048",
+        "title": "Add index to `created_at` column in events table",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "CSRF token not validated on this form action",
+                    "Session is not invalidated on logout"
+                ],
+                "lines_of_code_changed": 78,
+                "time_spent_minutes": 15,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Rename function `doIt` to `processPayment`",
+                    "Inline this single-use variable"
+                ],
+                "lines_of_code_changed": 2,
+                "time_spent_minutes": 18,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1049",
+        "title": "Update dependencies to latest stable versions",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "XSS vulnerability: HTML is rendered from unescaped user input",
+                    "Sensitive data logged in plaintext"
+                ],
+                "lines_of_code_changed": 71,
+                "time_spent_minutes": 15,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Rename function `doIt` to `processPayment`",
+                    "Inline this single-use variable"
+                ],
+                "lines_of_code_changed": 1,
+                "time_spent_minutes": 6,
+                "value_assessment": "low"
+            },
+            {
+                "round_number": 3,
+                "reviewer_comments": [
+                    "Looks good, no further comments"
+                ],
+                "lines_of_code_changed": 3,
+                "time_spent_minutes": 11,
+                "value_assessment": "low"
+            }
+        ]
+    },
+    {
+        "pr_id": "PR-1050",
+        "title": "Implement file upload size validation",
+        "rounds": [
+            {
+                "round_number": 1,
+                "reviewer_comments": [
+                    "Null pointer exception if `user` is None \u2014 needs a guard clause",
+                    "Logic error: loop exits one iteration too early"
+                ],
+                "lines_of_code_changed": 45,
+                "time_spent_minutes": 45,
+                "value_assessment": "high"
+            },
+            {
+                "round_number": 2,
+                "reviewer_comments": [
+                    "Whitespace nit: remove extra blank line",
+                    "Rename `cb` to `callback`"
+                ],
+                "lines_of_code_changed": 4,
+                "time_spent_minutes": 6,
                 "value_assessment": "low"
             }
         ]

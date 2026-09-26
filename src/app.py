@@ -8,24 +8,18 @@ import plotly.express as px
 from analyzer import analyze_data
 
 
-# ── MOCK AI INSIGHT GENERATOR ─────────────────────────────────────────────────
-# Keyword-based classifier that produces a short, professional triage string.
-# Accepts a list of comment strings and returns a single insight sentence.
-def generate_ai_insight(comments: list[str]) -> str:
-    """Return a short AI triage string derived from the reviewer comments."""
-    # Flatten all comments to lowercase for keyword matching
-    combined = " ".join(comments).lower()
+# ── AI INSIGHT CLASSIFIER ──────────────────────────────────────────────────────
+# Keyword-based triage function. Accepts a list of comment strings and returns
+# a single actionable insight sentence based on matched keyword categories.
+def get_ai_insight(comments_list: list[str]) -> str:
+    """Return a triage insight string derived from reviewer comment keywords."""
+    combined = " ".join(comments_list).lower()
 
-    if any(kw in combined for kw in ("rename", "semicolon", "lgtm", "typo", "whitespace", "format")):
+    if any(kw in combined for kw in ("lgtm", "nit", "format", "rename")):
         return "🤖 AI Insight: Nitpick detected. Suggest auto-fixing with a linter. No human review needed."
-    if any(kw in combined for kw in ("logic", "bug", "error", "crash", "null", "exception")):
-        return "🤖 AI Insight: Logic concern flagged. Escalate to senior reviewer before merging."
-    if any(kw in combined for kw in ("test", "coverage", "spec", "assert")):
-        return "🤖 AI Insight: Test coverage gap noted. Auto-generate stubs and re-run CI pipeline."
-    if any(kw in combined for kw in ("security", "auth", "token", "secret", "password")):
-        return "🤖 AI Insight: Potential security concern. Route to security champion — do not auto-dismiss."
-    # Default fallback for unrecognised patterns
-    return "🤖 AI Insight: Low-signal round. Safe to collapse — no actionable feedback detected."
+    if any(kw in combined for kw in ("typo", "spacing")):
+        return "🤖 AI Insight: Minor formatting. Could be handled by pre-commit hooks."
+    return "🤖 AI Insight: Low-impact feedback. Consider consolidating with previous rounds."
 
 
 # ── CONFIGURATION ──────────────────────────────────────────────────────────────
@@ -89,44 +83,119 @@ div[data-testid="stButton"] > button[kind="primary"]:hover {
 </style>
 """, unsafe_allow_html=True)
 
+# ── SIDEBAR: ROI CALCULATOR ────────────────────────────────────────────────────
+with st.sidebar:
+    st.title("💰 ROI Calculator")
+    num_developers = st.number_input("Number of Developers", min_value=1, value=10, step=1)
+    hourly_rate    = st.number_input("Average Hourly Rate ($)", min_value=1, value=75, step=1)
+
 # ── DATA LOADING ───────────────────────────────────────────────────────────────
 # File uploader — appears at the top of the UI before any dashboard content.
 # Accepts a JSON file in the same format as data/sample_reviews.json
 # (a list of PR objects with a 'rounds' key).
 uploaded_file = st.file_uploader(
-    "🗃️Upload GitHub/GitLab PR Export (JSON)", 
+    "🗃️Upload GitHub/GitLab PR Export (JSON)",
     type=["json"],
     help="For best results, export your Pull Request review history as a JSON file. The app will automatically detect low-value rounds."
 )
 
 if uploaded_file is not None:
     # ── User-supplied data ─────────────────────────────────────────────────────
+
+    # ── Guard 1: empty file ───────────────────────────────────────────────────
+    raw_bytes = uploaded_file.read()
+    if not raw_bytes.strip():
+        st.error(
+            "❌ The uploaded file is empty. "
+            "Please upload a non-empty JSON file."
+        )
+        st.stop()
+
+    # ── Guard 2: valid JSON ───────────────────────────────────────────────────
     try:
-        parsed = json.load(uploaded_file)
+        parsed = json.loads(raw_bytes)
+    except json.JSONDecodeError as exc:
+        st.error(
+            f"❌ **Malformed JSON** — the file could not be parsed.\n\n"
+            f"**Parser says:** `{exc.msg}` at line {exc.lineno}, column {exc.colno}.\n\n"
+            "**How to fix:** Open the file in a text editor and check for:\n"
+            "- Missing or extra commas\n"
+            "- Unquoted keys or string values\n"
+            "- Unclosed brackets `[` or braces `{`"
+        )
+        st.stop()
 
-        if isinstance(parsed, list):
-            # ── Format A: raw reviews  [ { "pr_id": …, "rounds": […] }, … ]
-            # Run the full Nilist analysis pipeline on the uploaded data.
-            report = analyze_data(parsed)
+    # ── Guard 3: top-level type & structure ───────────────────────────────────
+    if isinstance(parsed, list):
+        # ── Format A: raw reviews  [ { "pr_id": …, "rounds": […] }, … ]
 
-        elif isinstance(parsed, dict) and "summary" in parsed and "deleted_rounds" in parsed:
-            # ── Format B: pre-generated report  { "summary": {…}, "deleted_rounds": […] }
-            # Already analysed — use it directly without re-processing.
-            report = parsed
-
-        else:
-            st.error(
-                "❌ Unrecognised JSON format. Please upload either:\n"
-                "- A **reviews file** — a JSON array of PR objects with a `rounds` key, or\n"
-                "- A **report file** — a JSON object with `summary` and `deleted_rounds` keys."
+        if len(parsed) == 0:
+            st.warning(
+                "⚠️ The uploaded reviews file contains no PR entries (empty array). "
+                "Nothing to analyse — please upload a file with at least one PR object."
             )
             st.stop()
 
-        data_source_label = f"📂 Analysing uploaded file: **{uploaded_file.name}**"
+        # Validate that every item is a dict with a 'rounds' key
+        invalid = [
+            i for i, item in enumerate(parsed)
+            if not isinstance(item, dict) or "rounds" not in item
+        ]
+        if invalid:
+            bad_indices = ", ".join(str(i) for i in invalid[:5])
+            st.error(
+                f"❌ **Missing `rounds` key** in PR object(s) at position(s): {bad_indices}.\n\n"
+                "Each PR entry must follow this structure:\n"
+                "```json\n"
+                "{\n"
+                '  "pr_id": "PR-1001",\n'
+                '  "title": "Fix auth bug",\n'
+                '  "rounds": [\n'
+                "    {\n"
+                '      "round_number": 1,\n'
+                '      "reviewer_comments": ["Security flaw found"],\n'
+                '      "lines_of_code_changed": 42,\n'
+                '      "time_spent_minutes": 30,\n'
+                '      "value_assessment": "high"\n'
+                "    }\n"
+                "  ]\n"
+                "}\n"
+                "```"
+            )
+            st.stop()
 
-    except Exception as exc:
-        st.error(f"❌ Could not parse the uploaded file: {exc}")
+        try:
+            report = analyze_data(parsed)
+        except Exception as exc:
+            st.error(
+                f"❌ Analysis failed after loading the file: `{exc}`\n\n"
+                "The JSON structure looks correct but the data may contain unexpected values. "
+                "Check that all required fields (`round_number`, `lines_of_code_changed`, "
+                "`time_spent_minutes`, `value_assessment`) are present in every round."
+            )
+            st.stop()
+
+    elif isinstance(parsed, dict) and "summary" in parsed and "deleted_rounds" in parsed:
+        # ── Format B: pre-generated report  { "summary": {…}, "deleted_rounds": […] }
+        # Already analysed — use it directly without re-processing.
+        report = parsed
+
+    else:
+        st.error(
+            "❌ **Unrecognised JSON format.**\n\n"
+            "Please upload one of these two supported formats:\n\n"
+            "**Format A — Reviews file** (a JSON array of PR objects):\n"
+            "```json\n"
+            '[{ "pr_id": "PR-1001", "title": "...", "rounds": [...] }]\n'
+            "```\n"
+            "**Format B — Pre-generated report** (a JSON object with these keys):\n"
+            "```json\n"
+            '{ "summary": { ... }, "deleted_rounds": [ ... ] }\n'
+            "```"
+        )
         st.stop()
+
+    data_source_label = f"📂 Analysing uploaded file: **{uploaded_file.name}**"
 else:
     # ── Fallback: read the pre-generated attention_report.json directly ────────
     # (This keeps the demo working without needing sample_reviews.json present.)
@@ -172,7 +241,7 @@ st.divider()
 
 # ── KEY METRICS ────────────────────────────────────────────────────────────────
 st.subheader("📊 Summary Metrics")
-col1, col2, col3, col4 = st.columns(4, gap="medium")
+col1, col2, col3, col4, col5 = st.columns(5, gap="medium")
 
 with col1:
     st.metric(label="PRs Analyzed", value=summary['total_prs_analyzed'])
@@ -189,6 +258,18 @@ with col4:
         label="⏱ Engineering Time Saved",
         value=f"{summary['time_saved_hours']} hrs",
         delta=f"{summary['total_time_wasted_minutes']} min reclaimed",
+    )
+
+with col5:
+    monthly_savings = (
+        (summary['total_time_wasted_minutes'] / 60)
+        * hourly_rate
+        * num_developers
+        * (4 * 4)  # 4 PRs per dev per week × 4 weeks
+    )
+    st.metric(
+        label="💰 Estimated Monthly Savings",
+        value=f"**${monthly_savings:,.0f} / month**",
     )
 
 st.divider()
@@ -241,10 +322,10 @@ if deleted_rounds:
         st.subheader("🗑 Rounds Flagged for Deletion")
         st.caption("Every round that added minimal code changes after the critical review phase.")
 
-        # Add Mock AI Insight column — apply generator row-wise from raw 'reviewer_comments' list
-        df_display['🤖 AI Insight'] = df['reviewer_comments'].apply(generate_ai_insight)
+        # Add AI Insight column — apply classifier row-wise from raw 'reviewer_comments' list
+        df_display['🤖 AI Insight'] = df['reviewer_comments'].apply(get_ai_insight)
 
-        with st.expander("🧠 View Detailed AI Analysis of Deleted Rounds", expanded=False):
+        with st.expander("🔍 View Detailed AI Analysis of Deleted Rounds", expanded=False):
             st.dataframe(df_display, use_container_width=True, hide_index=True)
 
     # ── Action button ──

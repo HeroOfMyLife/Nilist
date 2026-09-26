@@ -4,6 +4,30 @@ import os
 import pandas as pd
 import plotly.express as px
 
+# Import the reusable analysis function from the sibling module
+from analyzer import analyze_data
+
+
+# ── MOCK AI INSIGHT GENERATOR ─────────────────────────────────────────────────
+# Keyword-based classifier that produces a short, professional triage string.
+# Accepts a list of comment strings and returns a single insight sentence.
+def generate_ai_insight(comments: list[str]) -> str:
+    """Return a short AI triage string derived from the reviewer comments."""
+    # Flatten all comments to lowercase for keyword matching
+    combined = " ".join(comments).lower()
+
+    if any(kw in combined for kw in ("rename", "semicolon", "lgtm", "typo", "whitespace", "format")):
+        return "🤖 AI Insight: Nitpick detected. Suggest auto-fixing with a linter. No human review needed."
+    if any(kw in combined for kw in ("logic", "bug", "error", "crash", "null", "exception")):
+        return "🤖 AI Insight: Logic concern flagged. Escalate to senior reviewer before merging."
+    if any(kw in combined for kw in ("test", "coverage", "spec", "assert")):
+        return "🤖 AI Insight: Test coverage gap noted. Auto-generate stubs and re-run CI pipeline."
+    if any(kw in combined for kw in ("security", "auth", "token", "secret", "password")):
+        return "🤖 AI Insight: Potential security concern. Route to security champion — do not auto-dismiss."
+    # Default fallback for unrecognised patterns
+    return "🤖 AI Insight: Low-signal round. Safe to collapse — no actionable feedback detected."
+
+
 # ── CONFIGURATION ──────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="Nilist: Human Attention Report",
@@ -66,17 +90,74 @@ div[data-testid="stButton"] > button[kind="primary"]:hover {
 """, unsafe_allow_html=True)
 
 # ── DATA LOADING ───────────────────────────────────────────────────────────────
-script_dir = os.path.dirname(os.path.abspath(__file__))
-report_file = os.path.join(script_dir, '..', 'data', 'attention_report.json')
+# File uploader — appears at the top of the UI before any dashboard content.
+# Accepts a JSON file in the same format as data/sample_reviews.json
+# (a list of PR objects with a 'rounds' key).
+uploaded_file = st.file_uploader(
+    "🗃️Upload GitHub/GitLab PR Export (JSON)", 
+    type=["json"],
+    help="For best results, export your Pull Request review history as a JSON file. The app will automatically detect low-value rounds."
+)
 
-with open(report_file, 'r') as f:
-    report = json.load(f)
+if uploaded_file is not None:
+    # ── User-supplied data ─────────────────────────────────────────────────────
+    try:
+        parsed = json.load(uploaded_file)
 
-summary       = report['summary']
+        if isinstance(parsed, list):
+            # ── Format A: raw reviews  [ { "pr_id": …, "rounds": […] }, … ]
+            # Run the full Nilist analysis pipeline on the uploaded data.
+            report = analyze_data(parsed)
+
+        elif isinstance(parsed, dict) and "summary" in parsed and "deleted_rounds" in parsed:
+            # ── Format B: pre-generated report  { "summary": {…}, "deleted_rounds": […] }
+            # Already analysed — use it directly without re-processing.
+            report = parsed
+
+        else:
+            st.error(
+                "❌ Unrecognised JSON format. Please upload either:\n"
+                "- A **reviews file** — a JSON array of PR objects with a `rounds` key, or\n"
+                "- A **report file** — a JSON object with `summary` and `deleted_rounds` keys."
+            )
+            st.stop()
+
+        data_source_label = f"📂 Analysing uploaded file: **{uploaded_file.name}**"
+
+    except Exception as exc:
+        st.error(f"❌ Could not parse the uploaded file: {exc}")
+        st.stop()
+else:
+    # ── Fallback: read the pre-generated attention_report.json directly ────────
+    # (This keeps the demo working without needing sample_reviews.json present.)
+    script_dir  = os.path.dirname(os.path.abspath(__file__))
+    report_file = os.path.join(script_dir, '..', 'data', 'attention_report.json')
+    with open(report_file, 'r') as f:
+        report = json.load(f)
+    data_source_label = "🗂 Using built-in demo dataset"
+
+summary        = report['summary']
 deleted_rounds = report['deleted_rounds']
 
 # ── HEADER ─────────────────────────────────────────────────────────────────────
-st.title("⚡ Nilist: Human Attention Report")
+# logo.png lives in the same directory as app.py (src/logo.png).
+# Build the path relative to __file__ so it works regardless of the CWD
+# Streamlit is launched from.
+logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logo.png")
+
+logo_col, title_col = st.columns([1, 5], gap="medium")
+
+with logo_col:
+    if os.path.exists(logo_path):
+        st.image(logo_path, width=140)
+    else:
+        # Graceful fallback — keeps layout intact if the file is ever missing
+        st.markdown("<div style='font-size:3rem;'>⚡</div>", unsafe_allow_html=True)
+
+with title_col:
+    st.title("⚡ Nilist: Human Attention Report")
+    st.caption(data_source_label)
+
 st.markdown(
     "<p style='color:#7fcd7f; font-size:1.05rem; max-width:760px;'>"
     "<strong style='color:#39ff14;'>The Problem:</strong> Code reviews suffer from diminishing returns — "
@@ -159,7 +240,12 @@ if deleted_rounds:
     with table_col:
         st.subheader("🗑 Rounds Flagged for Deletion")
         st.caption("Every round that added minimal code changes after the critical review phase.")
-        st.dataframe(df_display, use_container_width=True, hide_index=True)
+
+        # Add Mock AI Insight column — apply generator row-wise from raw 'reviewer_comments' list
+        df_display['🤖 AI Insight'] = df['reviewer_comments'].apply(generate_ai_insight)
+
+        with st.expander("🧠 View Detailed AI Analysis of Deleted Rounds", expanded=False):
+            st.dataframe(df_display, use_container_width=True, hide_index=True)
 
     # ── Action button ──
     st.divider()
